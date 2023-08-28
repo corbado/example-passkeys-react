@@ -4,8 +4,9 @@ This is a sample implementation of the Corbado web component being integrated in
 
 ## File structure
 
-- `src/Home.js`: the file where the web component is embedded
-- `src/LoggedIn.js`: displays user information if the user has successfully authenticated
+- `src/index.js`: routing for the React web app
+- `src/Home.js`: component for the sign up / login screen
+- `src/Profile.js`: :component for the user profile information that is shown after successful authentication
 - `.env`: add Corbado project id as environment variables that you can obtain
   from [Corbado developer panel](https://app.corbado.com/signin#register)
 
@@ -31,5 +32,5 @@ to install all dependencies.
 Finally, you can run the project locally with
 
 ```bash
-npm run start
+npm start
 ```
