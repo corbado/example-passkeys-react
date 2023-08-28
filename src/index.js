@@ -4,13 +4,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Profile from "./Profile";
-import App from "./App";
+import Home from "./Home";
 
 const router = createBrowserRouter([
 
     {
         path: "/",
-        element: <App />
+        element: <Home />
     },
     {
         path: "/profile",
