@@ -4,13 +4,17 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home from "./Home";
+import Login from "./Login";
 import Profile from "./Profile";
 
 const router = createBrowserRouter([
-
     {
         path: "/",
-        element: <Home />
+        element: <Home/>
+    },
+    {
+        path: "/login",
+        element: <Login/>
     },
     {
         path: "/profile",
