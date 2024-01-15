@@ -1,6 +1,8 @@
-# Complete passkeys integration example for React with Corbado
+# React Passkey-First Authentication Example with Corbado
 
 This is a sample implementation of the Corbado web component being integrated into a web application built with React.
+
+Please see the [full blog post](https://www.corbado.com/blog/react-passkeys) to understand all the required steps to integrate passkeys into React apps.
 
 ## File structure
 
