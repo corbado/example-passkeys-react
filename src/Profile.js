@@ -5,16 +5,17 @@ import Corbado from "@corbado/webcomponent";
 const CORBADO_PROJECT_ID = process.env.REACT_APP_CORBADO_PROJECT_ID;
 
 function Profile() {
-    const session = new Corbado.Session(CORBADO_PROJECT_ID);
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
+    const session = new Corbado.Session(CORBADO_PROJECT_ID);
         session.refresh(user => {
             setUser(user);
         });
     }, []);
 
+    const session = new Corbado.Session(CORBADO_PROJECT_ID);
     const handleLogout = () => {
         session.logout()
             .then(async () => {
@@ -43,7 +44,7 @@ function Profile() {
         return (
             <div>
                 <p>You're not logged in.</p>
-                <p>Please go back to <a href="#" onClick={redirectToHome}>home</a> to log in.</p>
+                <p>Please go back to <a href="#/" onClick={redirectToHome}>home</a> to log in.</p>
             </div>
         );
     }
