@@ -1,19 +1,20 @@
-import './App.css';
-import React from 'react';
-import '@corbado/webcomponent/pkg/auth_cui.css';
-import '@corbado/webcomponent';
+import "./App.css"
+import React from "react"
+import { CorbadoAuth } from "@corbado/react"
+import { useNavigate } from "react-router-dom"
 
-const CORBADO_PROJECT_ID = process.env.REACT_APP_CORBADO_PROJECT_ID;
+export default function Home() {
+    const navigate = useNavigate()
+    const onLoggedIn = () => {
+        navigate('/profile')
+    }
 
-function Home() {
     return (
-        <div className="App">
-            <corbado-auth project-id={CORBADO_PROJECT_ID} conditional="yes">
-                <input name="username" id="corbado-username"
-                       required autoComplete="webauthn"/>
-            </corbado-auth>
+        <div className='Auth'>
+            <CorbadoAuth
+                onLoggedIn={onLoggedIn}
+                customerSupportEmail='support@company.com'
+            />
         </div>
-    );
+    )
 }
-
-export default Home;

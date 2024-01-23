@@ -1,31 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
-import Corbado from "@corbado/webcomponent";
+import { useNavigate } from "react-router-dom"
+import { useCorbado } from "@corbado/react"
 
-const CORBADO_PROJECT_ID = process.env.REACT_APP_CORBADO_PROJECT_ID;
+export default function Profile() {
+    const navigate = useNavigate()
+    const { shortSession, user, logout } = useCorbado()
 
-function Profile() {
-    const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-    const session = new Corbado.Session(CORBADO_PROJECT_ID);
-        session.refresh(user => {
-            setUser(user);
-        });
-    }, []);
-
-    const session = new Corbado.Session(CORBADO_PROJECT_ID);
-    const handleLogout = () => {
-        session.logout()
-            .then(async () => {
-                navigate("/");
-            })
-            .catch(err => console.log(err))
+    if (user === undefined || shortSession === undefined) {
+        return <p>Your are not logged in</p>
     }
 
     const redirectToHome = () => {
-        navigate("/");
+        navigate("/")
+    }
+    const handleLogout = () => {
+        logout()
+        redirectToHome()
     }
 
     if (user) {
@@ -39,15 +28,19 @@ function Profile() {
                 </p>
                 <button onClick={handleLogout}>Logout</button>
             </div>
-        );
+        )
     } else {
         return (
             <div>
                 <p>You're not logged in.</p>
-                <p>Please go back to <a href="#/" onClick={redirectToHome}>home</a> to log in.</p>
+                <p>
+                    Please go back to{" "}
+                    <a href='#/' onClick={redirectToHome}>
+                        home
+                    </a>{" "}
+                    to log in.
+                </p>
             </div>
-        );
+        )
     }
 }
-
-export default Profile;
