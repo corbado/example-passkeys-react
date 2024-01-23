@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom"
-import { useCorbado } from "@corbado/react"
+import {useNavigate} from "react-router-dom"
+import {useCorbadoSession, useCorbado} from "@corbado/react"
 
 export default function Profile() {
     const navigate = useNavigate()
-    const { shortSession, user, logout } = useCorbado()
+    const {isAuthenticated, user} = useCorbadoSession();
+    const {logout} = useCorbado();
 
     const redirectToHome = () => {
         navigate("/")
@@ -13,19 +14,7 @@ export default function Profile() {
         redirectToHome()
     }
 
-    if (user && shortSession) {
-        return (
-            <div>
-                <h1>Profile Page</h1>
-                <p>
-                    User-ID: {user.sub}
-                    <br />
-                    Email: {user.email}
-                </p>
-                <button onClick={handleLogout}>Logout</button>
-            </div>
-        )
-    } else {
+    if (!isAuthenticated || !user) {
         return (
             <div>
                 <p>You're not logged in.</p>
@@ -37,6 +26,19 @@ export default function Profile() {
                     to log in.
                 </p>
             </div>
+        )
+    } else {
+        return (
+            <div>
+                <h1>Profile Page</h1>
+                <p>
+                    User-ID: {user.sub}
+                    <br/>
+                    Email: {user.email}
+                </p>
+                <button onClick={handleLogout}>Logout</button>
+            </div>
+
         )
     }
 }

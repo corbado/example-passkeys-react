@@ -13,7 +13,6 @@ export default function Home() {
         <div className='Auth' style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
             <CorbadoAuth
                 onLoggedIn={onLoggedIn}
-                customerSupportEmail='support@company.com'
             />
         </div>
     )
