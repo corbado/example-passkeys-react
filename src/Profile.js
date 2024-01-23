@@ -5,10 +5,6 @@ export default function Profile() {
     const navigate = useNavigate()
     const { shortSession, user, logout } = useCorbado()
 
-    if (user === undefined || shortSession === undefined) {
-        return <p>Your are not logged in</p>
-    }
-
     const redirectToHome = () => {
         navigate("/")
     }
@@ -16,8 +12,8 @@ export default function Profile() {
         logout()
         redirectToHome()
     }
-    console.log(user)
-    if (user) {
+
+    if (user && shortSession) {
         return (
             <div>
                 <h1>Profile Page</h1>
@@ -35,7 +31,7 @@ export default function Profile() {
                 <p>You're not logged in.</p>
                 <p>
                     Please go back to{" "}
-                    <a href='#/' onClick={redirectToHome}>
+                    <a href='/' onClick={redirectToHome}>
                         home
                     </a>{" "}
                     to log in.

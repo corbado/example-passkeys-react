@@ -9,7 +9,7 @@ const CORBADO_PROJECT_ID = process.env.REACT_APP_CORBADO_PROJECT_ID
 function App() {
     return (
         <div className='App'>
-            <CorbadoProvider projectId={CORBADO_PROJECT_ID}>
+            <CorbadoProvider projectId={CORBADO_PROJECT_ID} darkMode='on'>
                 <BrowserRouter>
                     <Routes>
                         <Route exact path='/' element={<Home />} />
