@@ -36,8 +36,3 @@
     transform: rotate(360deg);
   }
 }
-.Auth {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}

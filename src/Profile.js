@@ -16,13 +16,13 @@ export default function Profile() {
         logout()
         redirectToHome()
     }
-
+    console.log(user)
     if (user) {
         return (
             <div>
                 <h1>Profile Page</h1>
                 <p>
-                    User-ID: {user.userID}
+                    User-ID: {user.sub}
                     <br />
                     Email: {user.email}
                 </p>
