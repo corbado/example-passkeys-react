@@ -6,7 +6,7 @@ Please see the [full blog post](https://www.corbado.com/blog/react-passkeys) to 
 
 ## File structure
 
-- `src/index.js`: routing for the React web app
+- `src/App.js`: routing for the React web app
 - `src/Home.js`: component for the sign up / login screen
 - `src/Profile.js`: :component for the user profile information that is shown after successful authentication
 - `.env`: add Corbado project id as environment variables that you can obtain
