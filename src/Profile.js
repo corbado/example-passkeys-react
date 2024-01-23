@@ -1,53 +1,44 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
-import Corbado from "@corbado/webcomponent";
+import {useNavigate} from "react-router-dom"
+import {useCorbadoSession, useCorbado} from "@corbado/react"
 
-const CORBADO_PROJECT_ID = process.env.REACT_APP_CORBADO_PROJECT_ID;
-
-function Profile() {
-    const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-    const session = new Corbado.Session(CORBADO_PROJECT_ID);
-        session.refresh(user => {
-            setUser(user);
-        });
-    }, []);
-
-    const session = new Corbado.Session(CORBADO_PROJECT_ID);
-    const handleLogout = () => {
-        session.logout()
-            .then(async () => {
-                navigate("/");
-            })
-            .catch(err => console.log(err))
-    }
+export default function Profile() {
+    const navigate = useNavigate()
+    const {isAuthenticated, user} = useCorbadoSession();
+    const {logout} = useCorbado();
 
     const redirectToHome = () => {
-        navigate("/");
+        navigate("/")
+    }
+    const handleLogout = () => {
+        logout()
+        redirectToHome()
     }
 
-    if (user) {
+    if (!isAuthenticated || !user) {
+        return (
+            <div>
+                <p>You're not logged in.</p>
+                <p>
+                    Please go back to{" "}
+                    <a href='/' onClick={redirectToHome}>
+                        home
+                    </a>{" "}
+                    to log in.
+                </p>
+            </div>
+        )
+    } else {
         return (
             <div>
                 <h1>Profile Page</h1>
                 <p>
-                    User-ID: {user.userID}
-                    <br />
+                    User-ID: {user.sub}
+                    <br/>
                     Email: {user.email}
                 </p>
                 <button onClick={handleLogout}>Logout</button>
             </div>
-        );
-    } else {
-        return (
-            <div>
-                <p>You're not logged in.</p>
-                <p>Please go back to <a href="#/" onClick={redirectToHome}>home</a> to log in.</p>
-            </div>
-        );
+
+        )
     }
 }
-
-export default Profile;
