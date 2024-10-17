@@ -34,5 +34,6 @@ to install all dependencies.
 Finally, you can run the project locally with
 
 ```bash
+export REACT_APP_CORBADO_PROJECT_ID=<YOUR PROJECT ID>
 npm start
 ```

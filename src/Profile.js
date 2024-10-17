@@ -3,8 +3,7 @@ import {useCorbadoSession, useCorbado} from "@corbado/react"
 
 export default function Profile() {
     const navigate = useNavigate()
-    const {isAuthenticated, user} = useCorbadoSession();
-    const {logout} = useCorbado();
+    const {isAuthenticated, user, logout} = useCorbado();
 
     const redirectToHome = () => {
         navigate("/")
